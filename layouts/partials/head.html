@@ -26,7 +26,12 @@
   <head>
     {{ partial "head_start.html" . }}
     {{ partial "meta.html" . }}
-    <title>{{ with .Title }}{{ . }}{{ else }}{{ .Site.Title }}{{ end }}</title>
+    
+    {{ if eq .Title "" }}
+    <title>{{ .Site.Title }}</title>
+    {{ else }}
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    {{ end }}
 
     <link rel="icon" href="{{ with .Site.Params.favicon }}{{ . }}{{ else }}/favicon.png{{ end }}">
     {{ with .RSSLink }}
